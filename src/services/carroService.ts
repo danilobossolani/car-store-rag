@@ -1,7 +1,32 @@
 import { pool } from '../config/database';
 
-export async function listarCarros() {
-    const resultado = await pool.query('SELECT * FROM carros ORDER BY id');
+export async function listarCarros(filtros: any) {
+    let query = 'SELECT * FROM carros WHERE 1=1';
+    const valores: any[] = [];
+
+    if (filtros.categoria) {
+        valores.push(filtros.categoria);
+        query += ` AND categoria = $${valores.length}`;
+    }
+
+    if (filtros.montadora) {
+        valores.push(filtros.montadora);
+        query += ` AND montadora = $${valores.length}`;
+    }
+
+    if (filtros.precoMin) {
+        valores.push(filtros.precoMin);
+        query += ` AND preco_a_partir_rs >= $${valores.length}`;
+    }
+
+    if (filtros.precoMax) {
+        valores.push(filtros.precoMax);
+        query += ` AND preco_a_partir_rs <= $${valores.length}`;
+    }
+
+    query += ' ORDER BY id';
+
+    const resultado = await pool.query(query, valores);
     return resultado.rows;
 }
 export async function buscarCarroPorId(id: number) {

@@ -3,7 +3,13 @@ import { listarCarros, buscarCarroPorId, criarCarro, atualizarCarro, deletarCarr
 
 export async function getCarros(req: Request, res: Response) {
     try {
-        const carros = await listarCarros();
+        const filtros = {
+            categoria: req.query.categoria as string,
+            montadora: req.query.montadora as string,
+            precoMin: req.query.precoMin as string,
+            precoMax: req.query.precoMax as string,
+        };
+        const carros = await listarCarros(filtros);
         res.json(carros);
     } catch (error) {
         res.status(500).json({ erro: 'Erro ao buscar carros' });
