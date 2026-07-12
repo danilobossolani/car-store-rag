@@ -17,3 +17,12 @@ CREATE TABLE carros (
   imagens TEXT[],
   criado_em TIMESTAMP DEFAULT NOW()
 );
+CREATE TABLE leads (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  telefone VARCHAR(20),
+  carro_id INTEGER REFERENCES carros(id),
+  mensagem TEXT,
+  criado_em TIMESTAMP DEFAULT NOW()
+);

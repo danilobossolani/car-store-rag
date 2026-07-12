@@ -1,11 +1,13 @@
 import { pool } from './config/database';
 import express from 'express'
 import carroRoutes from './routes/carroRoutes';
+import leadRoutes from './routes/leadRoutes';
 
 const app = express()
 
 app.use(express.json());
 app.use('/carros', carroRoutes);
+app.use('/leads', leadRoutes);
 
 app.listen(3000, async () => {
     console.log('Server is running on port 3000');
