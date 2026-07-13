@@ -10,6 +10,7 @@ app.use(express.json());
 app.use('/carros', carroRoutes);
 app.use('/chat', chatRoutes);
 app.use('/leads', leadRoutes);
+app.use(express.static('public'));
 
 app.listen(3000, async () => {
     console.log('Server is running on port 3000');

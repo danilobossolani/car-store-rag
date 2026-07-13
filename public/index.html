@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoStore — Catálogo de Veículos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="topo">
+        <div class="marca">AUTO<span>STORE</span></div>
+        <p class="subtitulo">Catálogo oficial | 15 veículos disponíveis</p>
+    </header>
+
+    <section class="filtros">
+        <select id="filtroCategoria">
+            <option value="">Todas categorias</option>
+        </select>
+        <select id="filtroMontadora">
+            <option value="">Todas montadoras</option>
+        </select>
+        <button id="btnLimpar">Limpar filtros</button>
+    </section>
+
+    <main id="grade" class="grade-carros">
+        <p class="carregando">Carregando catálogo...</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
