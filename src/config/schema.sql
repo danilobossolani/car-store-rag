@@ -26,3 +26,7 @@ CREATE TABLE leads (
   mensagem TEXT,
   criado_em TIMESTAMP DEFAULT NOW()
 );
+CREATE EXTENSION vector;
+
+ALTER TABLE carros ADD COLUMN retrieval_text TEXT;
+ALTER TABLE carros ADD COLUMN embedding vector(3072);
