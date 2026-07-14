@@ -55,10 +55,10 @@ carregarCarro();
 function montarChat(carro) {
   const chatHTML = `
     <div class="chat-secao">
-      <h2 class="chat-titulo">Pergunte sobre este ou outros carros</h2>
-      <div id="chatMensagens" class="chat-mensagens"></div>
+    <h2 class="chat-titulo">🏁 Nagata — seu consultor de carros</h2>
+        <div id="chatMensagens" class="chat-mensagens"></div>
       <div class="chat-input-linha">
-        <input type="text" id="chatInput" placeholder="Ex: qual o consumo desse carro na estrada?">
+      <input type="text" id="chatInput" placeholder="Pergunte ao Nagata sobre qualquer carro do catálogo...">
         <button id="chatEnviar">Enviar</button>
       </div>
     </div>
