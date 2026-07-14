@@ -422,3 +422,14 @@ body {
 .link-leads:hover {
     text-decoration: underline;
 }
+
+.nagata-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.chat-full {
+    max-height: 60vh;
+    min-height: 300px;
+}
