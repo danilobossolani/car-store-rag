@@ -2,6 +2,8 @@ const chatMensagens = document.getElementById('chatMensagens');
 const chatInput = document.getElementById('chatInput');
 const chatEnviar = document.getElementById('chatEnviar');
 
+const historicoConversa = [];
+
 function adicionarMensagem(texto, autor) {
     const div = document.createElement('div');
     div.className = `chat-mensagem chat-${autor}`;
@@ -16,18 +18,20 @@ async function enviarPergunta() {
     if (!pergunta) return;
 
     adicionarMensagem(pergunta, 'usuario');
+    historicoConversa.push({ autor: 'usuario', texto: pergunta });
     chatInput.value = '';
     adicionarMensagem('Pensando...', 'carregando');
 
     const resposta = await fetch('/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pergunta }),
+        body: JSON.stringify({ pergunta, historico: historicoConversa }),
     });
     const dados = await resposta.json();
 
     document.querySelector('.chat-carregando')?.remove();
     adicionarMensagem(dados.resposta, 'ia');
+    historicoConversa.push({ autor: 'ia', texto: dados.resposta });
 }
 
 chatEnviar.addEventListener('click', enviarPergunta);

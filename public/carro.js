@@ -2,6 +2,8 @@ const params = new URLSearchParams(window.location.search);
 const carroId = params.get('id');
 const container = document.getElementById('detalheCarro');
 
+const historicoConversa = [];
+
 async function carregarCarro() {
   const resposta = await fetch(`/carros/${carroId}`);
   const carro = await resposta.json();
@@ -83,18 +85,20 @@ function montarChat(carro) {
     if (!pergunta) return;
 
     adicionarMensagem(pergunta, 'usuario');
+    historicoConversa.push({ autor: 'usuario', texto: pergunta });
     chatInput.value = '';
     adicionarMensagem('Pensando...', 'carregando');
 
     const resposta = await fetch('/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pergunta }),
+      body: JSON.stringify({ pergunta, historico: historicoConversa }),
     });
     const dados = await resposta.json();
 
     document.querySelector('.chat-carregando')?.remove();
     adicionarMensagem(dados.resposta, 'ia');
+    historicoConversa.push({ autor: 'ia', texto: dados.resposta });
   }
 
   chatEnviar.addEventListener('click', enviarPergunta);
