@@ -1,3 +1,55 @@
+# AutoStore 🏁
+
+Loja de carros online com catálogo, ficha técnica, assistente de IA (RAG) e captura de leads — desenvolvido para o desafio técnico da Fluxomind.
+
+## Stack
+
+- **Backend**: Node.js + TypeScript + Express
+- **Banco de dados**: PostgreSQL 17 + extensão pgvector (busca semântica)
+- **IA**: Google Gemini (`gemini-embedding-001` para embeddings, `gemini-3.1-flash-lite` para geração de respostas)
+- **Frontend**: HTML + CSS + JavaScript puro (sem framework)
+
+## Pré-requisitos
+
+- Node.js 18+ instalado
+- PostgreSQL 17 instalado, com a extensão [pgvector](https://github.com/pgvector/pgvector) habilitada
+- Uma chave de API do Google Gemini ([obtenha aqui](https://aistudio.google.com/))
+
+## Como rodar o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/danilobossolani/car-store-rag.git
+cd car-store-rag
+```
+
+### 2. Instalar as dependências
+
+```bash
+npm install
+```
+
+### 3. Criar o banco de dados
+
+No PostgreSQL, crie um banco chamado `autostore`:
+
+```sql
+CREATE DATABASE autostore;
+```
+
+### 4. Configurar variáveis de ambiente
+
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=senhadopostgres
+DB_NAME=autostore
+PORT=3000
+GEMINI_API_KEY: CHAVE_API_GEMINI
+
 ### 5. Criar as tabelas e a extensão pgvector
 
 Execute o script `src/config/schema.sql` no banco `autostore` (via psql, pgAdmin, ou qualquer cliente SQL).
